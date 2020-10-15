@@ -6,8 +6,9 @@ This is a java project to connect and drive an evaluation board with hc11 microc
 To install this project, please download the source code and create with eclipse a referenced project.
 To run connect you evb with pc (push the com1 button and choose the com1).
 
-Put commands at the end of the left text window   
+Put commands at the end of the left text window, for example:
 help <CR>
+  
 md <addr> 
   
 As requirement you need the RXTXcomm.jar serial driver.
