@@ -1,1 +1,0 @@
-Additional terminal keyboard functions are as follows:          (CTRL)A   Exit transparent mode or assembler          (CTRL)B   Send break command to host in transparent mode          (CTRL)H   Backspace          (CTRL)J   Line feed <1f>          (CTRL)W   Wait/freeze screen (Note 1)          (DELETE)  Abort/cancel command          (RETURN)  Enter command/repeat last command
