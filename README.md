@@ -7,6 +7,7 @@ To install this project, please download the source code and create with eclipse
 To run connect you evb with pc (push the com1 button and choose the com1).
 
 Put commands at the end of the left text window, for example:
+
 help <CR>
   
 md <addr> 
