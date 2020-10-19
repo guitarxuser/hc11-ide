@@ -37,12 +37,12 @@ implements KeyListener,ActionListener
 
 	private DataOutputStream os;
 	JTextField commandField;
-
+        Button bt_ctrl_a;
 	public static Choice auswahl;
 
 	//Button bt_read;
 	public static JTextArea terminal,editor;
-	public static String input;
+	public static String input,port_name;
 
 	static String write_content; //content from the area
 	static String write_content_2_send;
@@ -181,7 +181,8 @@ implements KeyListener,ActionListener
 		add(leftPane,BorderLayout.WEST);
 		add(rightPane,BorderLayout.EAST);		
 		add(auswahl=new Choice() );
-		
+	        add(bt_ctrl_a=new Button("CTRL_A"));
+		bt_ctrl_a.addKeyListener(this);
 
 		//The  choice of com's implementation
 		auswahl.add("COM1");
@@ -196,7 +197,7 @@ implements KeyListener,ActionListener
 				System.out.println(auswahl.getSelectedItem());
 
 				SerialConnection connect = new  SerialConnection(os,Mywin.msg_que);
-
+				
 				if( auswahl.getSelectedItem().equals("COM1")){
 					connect.closeConnection();
 					try {
@@ -213,6 +214,8 @@ implements KeyListener,ActionListener
 
 					}
 				}
+				port_name=connect.port_name;
+				
 				if( auswahl.getSelectedItem().equals("COM2")){
 					connect.closeConnection();
 					try {
@@ -248,10 +251,11 @@ implements KeyListener,ActionListener
 			}
 		};  
 		
-		final ActionListener write_act = new ActionListener() { 	
+		final ActionListener ctrl_a_act = new ActionListener() { 	
 			public void actionPerformed(final ActionEvent e){ 	
-				write_functions();
+			    //	write_functions();
 				//write_content_2_send="^A";
+				new invoke_shell_command();
 			//	new Write();
 			}
 		};
@@ -272,7 +276,7 @@ implements KeyListener,ActionListener
 				System.exit(0);
 			}
 		});
-
+        bt_ctrl_a.addActionListener( ctrl_a_act );
 		//bt_read.addActionListener( read_act );
 		//establish the serial event handler 
 		//read class implementation

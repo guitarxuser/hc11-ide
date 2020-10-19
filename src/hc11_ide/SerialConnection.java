@@ -33,7 +33,7 @@ CommPortOwnershipListener {
 	private StringBuffer InputBuffer;
 	private String inp_str="lilo" ;
 	private MessageQue msq_que = new MessageQue(inp_str);
-	
+    public String port_name;  	
 	public SerialConnection(OutputStream pi_ou ,MessageQue msq_que) {
 		this.pi_ou=pi_ou;
 		this.msq_que=msq_que;
@@ -51,7 +51,7 @@ CommPortOwnershipListener {
 		while (portList.hasMoreElements()) {
 			portId = (CommPortIdentifier) portList.nextElement();
 			if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-
+				port_name =portId.getName();
 				//	if (portId.getName().equals("COM1")) {
 				//if (portId.getName().equals(Mywin.auswahl.getSelectedItem())) {
 				if (portId.getName().isEmpty())
