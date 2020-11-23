@@ -1,0 +1,24 @@
+output:  test2.s19
+0001                         *---------------------------------------------------*
+0002                         *  TEST2   example for debuggare usage
+0003                         *          
+0004                         *          trannsfers 16 charactes from 
+0005                         *          ROM ins RAM
+0006                         *
+0007                         * 
+0008                         *---------------------------------------------------*
+0009 4010                            ORG      $4010
+0010 4010 ce 41 00           TEST2   LDX      #$4100     X points to target RAM
+0011 4013 18 ce e5 f8                LDY      #$E5F8     Y points to source ROM
+0012 4017 c6 10                      LDAB     #$10       $10 (=16) characters to copy
+0013 4019 8d 15              TEST21  BSR      BYTE_C     copy 1 Byte
+0014 401b 5a                         DECB                
+0015 401c 26 fb                      BNE      TEST21     all characters
+0016 401e 3f                         SWI                 end
+0017 4030                            ORG      $4030      UP
+0018 4030 18 a6 00           BYTE_C  LDAA     0,Y        char from source
+0019 4033 a7 00                      STAA     0,X        char to target
+0020 4035 08                         INX                 
+0021 4036 18 08                      INY                 
+0022 4038 39                         RTS          
+0023                         	END    
