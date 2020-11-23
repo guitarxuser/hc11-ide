@@ -32,12 +32,13 @@ import java.util.*;
 public class Mywin extends javax.swing.JFrame 
 implements KeyListener,ActionListener
 {
-	private static final int SIZE_X = 650;
+	private static final int SIZE_X = 950;
 	private static final int SIZE_Y = 500 ;
 
 	private DataOutputStream os;
 	JTextField commandField;
         Button bt_ctrl_a;
+        
 	public static Choice auswahl;
 
 	//Button bt_read;
@@ -106,9 +107,9 @@ implements KeyListener,ActionListener
 
 		//Create a regular text field.
 
-		commandField = new JTextField(50);
+		//commandField = new JTextField(50);
 		//        commandField.setActionCommand(textFieldString);
-		commandField.addKeyListener(this);
+		//commandField.addKeyListener(this);
 
 		//terminal output window
 		terminal = new JTextArea("",15, 50 );
@@ -138,7 +139,7 @@ implements KeyListener,ActionListener
 
 		//Create an editor pane and editor pane .
 
-		terminalControlsPane.add(commandField,BorderLayout.SOUTH);
+	//	terminalControlsPane.add(commandField,BorderLayout.SOUTH);
 		terminalControlsPane.add(terminal,BorderLayout.PAGE_START);	
 
 		editorControlsPane.add(editor,BorderLayout.PAGE_START);
@@ -179,16 +180,21 @@ implements KeyListener,ActionListener
 				BorderLayout.PAGE_START);
 
 		add(leftPane,BorderLayout.WEST);
-		add(rightPane,BorderLayout.EAST);		
-		add(auswahl=new Choice() );
-	        add(bt_ctrl_a=new Button("CTRL_A"));
+		add(rightPane,BorderLayout.EAST);	
+		add(bt_ctrl_a=new Button("CTRL_A"));
+		leftPane.add(bt_ctrl_a);
+		add(auswahl=new Choice());
+	    
+	        
 		bt_ctrl_a.addKeyListener(this);
 
+		
 		//The  choice of com's implementation
 		auswahl.add("COM1");
 		auswahl.add("COM2");
 		auswahl.add("COM3");
 		auswahl.add("COM4");
+
 
 		ItemListener auswahl_act = new ItemListener(){
 
@@ -248,6 +254,7 @@ implements KeyListener,ActionListener
 
 					}
 				}
+
 			}
 		};  
 		
@@ -260,6 +267,12 @@ implements KeyListener,ActionListener
 			}
 		};
 		
+		final ActionListener close_com = new ActionListener() { 	
+			public void actionPerformed(final ActionEvent e){ 
+				SerialConnection connect = new  SerialConnection(os,Mywin.msg_que);
+				connect.closeConnection();
+			}
+		};
 		//final ActionListener read_act = new ActionListener() { 	
 			//public void actionPerformed(final ActionEvent e){ 	
 				//read_functions();
@@ -277,6 +290,7 @@ implements KeyListener,ActionListener
 			}
 		});
         bt_ctrl_a.addActionListener( ctrl_a_act );
+
 		//bt_read.addActionListener( read_act );
 		//establish the serial event handler 
 		//read class implementation
