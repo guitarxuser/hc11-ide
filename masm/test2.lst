@@ -1,6 +1,6 @@
 output:  test2.s19
 0001                         *---------------------------------------------------*
-0002                         *  TEST2   example for debuggare usage
+0002                         *  TEST2   example for debugger usage
 0003                         *          
 0004                         *          trannsfers 16 charactes from 
 0005                         *          ROM ins RAM
