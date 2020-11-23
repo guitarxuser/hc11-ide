@@ -362,7 +362,7 @@ implements KeyListener,ActionListener
 
 			// set up file chooser
 
-			// accept all image files ending with .s19, .asm, .asc
+			// accept all image files ending with .s19, .asm, .asc, lst
 
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("file types s19,asm,as11,asc,lst", "s19", "asm", "as11","asc","lst");
 			chooser.setFileFilter(filter);
